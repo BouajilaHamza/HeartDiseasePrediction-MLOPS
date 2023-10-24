@@ -10,7 +10,9 @@ from mlProject.entity.config_entity import ModelEvaluationConfig
 from mlProject.utils.common import save_json
 from pathlib import Path
 
-
+os.environ["MLFLOW_TRACKING_URI"]="https://dagshub.com/hamza.bouajila/End-to-End-MLOPS.mlflow"
+os.environ["MLFLOW_TRACKING_USERNAME"]="hamza.bouajila"
+os.environ["MLFLOW_TRACKING_PASSWORD"]="b8974c8a3d11e3c09f47ea162fd3e766ec534bee"
 class ModelEvaluation:
     def __init__(self, config: ModelEvaluationConfig):
         self.config = config
@@ -57,10 +59,6 @@ class ModelEvaluation:
             # Model registry does not work with file store
             if tracking_url_type_store != "file":
 
-                # Register the model
-                # There are other ways to use the Model Registry, which depends on the use case,
-                # please refer to the doc for more information:
-                # https://mlflow.org/docs/latest/model-registry.html#api-workflow
                 mlflow.sklearn.log_model(model, "model", registered_model_name="ElasticnetModel")
             else:
                 mlflow.sklearn.log_model(model, "model")
