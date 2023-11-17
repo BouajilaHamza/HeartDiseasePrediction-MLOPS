@@ -13,9 +13,9 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 
     {% if title %}
-        <title>ExpenseApp - {{ title }}</title>
+        <title>Wine Quality Dashboard - {{ title }}</title>
     {% else %}
-        <title>ExpenseApp</title>
+        <title>Wine Quality Dashboard</title>
     {% endif %}
 </head>
 
@@ -25,14 +25,14 @@
             <div class="col-md-12 p-0">
                 <header class="mb-4">
                     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                        <a class="navbar-brand" href="{{ url_for('index') }}">ExpenseIncome</a>
+                        <a class="navbar-brand" href="{{ url_for('index') }}">Home</a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
                             aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
                         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                             <div class="navbar-nav ml-auto mr-3">
-                                <a class="nav-item nav-link" href="{{ url_for('dashboard') }}">Dashboard</a>
+                                <!-- <a class="nav-item nav-link" href="{{ url_for('dashboard') }}">Dashboard</a> -->
                             </div>
                         </div>
                     </nav>

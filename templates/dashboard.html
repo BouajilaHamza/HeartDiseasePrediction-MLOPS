@@ -1,15 +1,25 @@
 <style>
     
-h1:{
+h1{
+    position: center;
     color: black;
     font-size: 50px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
+
 </style>
-<h1>Wine Quality Dataset Analysis</h1>
+<html>
+<head>
+    <link rel="icon" type="image/x-icon" href="static/assets/favicon.ico" />
+    <title>Wine Quality Dashboard</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
+</head>
 
 {% extends 'layout.html' %}
 {% block content %}
+<!-- <h1>Wine Quality Dataset Analysis</h1> -->
+
 <div class="col-xs-10 col-sm-6 col-md-6">
     <div class="card card-style mb-2">
         <div class="card-body">
@@ -39,7 +49,6 @@ h1:{
         </div>
     </div>
 </div>
-
 {% block javascript %}
 <script>
     var ctx = document.getElementById("quality_distribution").getContext("2d");
@@ -201,3 +210,4 @@ h1:{
 {% endblock%}
 
 {% endblock %}
+</html>
