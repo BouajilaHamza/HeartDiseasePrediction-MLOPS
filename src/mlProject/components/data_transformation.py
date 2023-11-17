@@ -3,26 +3,31 @@ from mlProject import logger
 from sklearn.model_selection import train_test_split
 import pandas as pd
 from mlProject.entity.config_entity import DataTransformationConfig
-
+from imblearn.over_sampling import SVMSMOTE
 
 
 class DataTransformation:
     def __init__(self, config: DataTransformationConfig):
         self.config = config
 
-    
-    ## Note: You can add different data transformation techniques such as Scaler, PCA and all
-    #You can perform all kinds of EDA in ML cycle here before passing this data to the model
+    def resampling_data(self):
+        data = pd.read_csv(self.config.data_path)
+        X = data.drop(columns=['quality'])
+        y = data['quality']
+        sm = SVMSMOTE()
+        X_res, y_res = sm.fit_resample(X, y)
+        Resampled_data = pd.concat([X_res, y_res], axis=1)
+        Resampled_data.to_csv(os.path.join(self.config.root_dir, "Resampled_data.csv"),index = False)
+        logger.info("Resampling data to be balanced")
+        logger.info(data.quality.value_counts())
+        logger.info(Resampled_data.quality.value_counts())
 
-    # I am only adding train_test_spliting cz this data is already cleaned up
 
 
     def train_test_spliting(self):
-        data = pd.read_csv(self.config.data_path)
-
-        # Split the data into training and test sets. (0.75, 0.25) split.
+        data = pd.read_csv(os.path.join(self.config.root_dir, "Resampled_data.csv"))
         train, test = train_test_split(data)
-
+        
         train.to_csv(os.path.join(self.config.root_dir, "train.csv"),index = False)
         test.to_csv(os.path.join(self.config.root_dir, "test.csv"),index = False)
 
@@ -32,4 +37,5 @@ class DataTransformation:
 
         print(train.shape)
         print(test.shape)
+        
         

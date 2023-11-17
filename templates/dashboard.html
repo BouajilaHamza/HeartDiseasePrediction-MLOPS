@@ -1,3 +1,13 @@
+<style>
+    
+h1:{
+    color: black;
+    font-size: 50px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+</style>
+<h1>Wine Quality Dataset Analysis</h1>
+
 {% extends 'layout.html' %}
 {% block content %}
 <div class="col-xs-10 col-sm-6 col-md-6">
@@ -10,15 +20,15 @@
     </div>
 </div>
 
-<!-- <div class="col-xs-10 col-sm-6 col-md-6">
+<div class="col-xs-10 col-sm-6 col-md-6">
     <div class="card card-style mb-2">
         <div class="card-body">
             <div class="chart-container" style="position: relative;">
-                <canvas id="income_vs_category"></canvas>
+                <canvas id="Resampled_Quality_Distribution"></canvas>
             </div>
         </div>
     </div>
-</div> -->
+</div>
 
 <div class="col-xs-10 col-sm-6 col-md-6">
     <div class="card card-style mb-2">
@@ -87,6 +97,55 @@
             }
         })
 
+
+    let ctx2 = document.getElementById("Resampled_Quality_Distribution").getContext("2d");
+    let rvalues  = JSON.parse({{ R_values | tojson }})
+    let rlabels  = JSON.parse({{ labels | tojson }})
+    let RQD_Chart = new Chart(ctx2, {
+            type: 'doughnut',
+            data: {
+            labels: rlabels,
+                datasets: [{
+                    label: "Quality Distribution",
+                    data: rvalues,
+                    backgroundColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(255, 159, 64)',
+                    'rgb(255, 205, 86)',
+                    'rgb(75, 192, 192)',
+                    'rgb(54, 162, 235)',
+                    'rgb(153, 102, 255)',                   
+                ],
+                    borderColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(255, 159, 64)',
+                    'rgb(255, 205, 86)',
+                    'rgb(75, 192, 192)',
+                    'rgb(54, 162, 235)',
+                    'rgb(153, 102, 255)',
+                    ],
+                }],
+            },
+            options: {
+                    title: {
+                        display: true,
+                            text: "Resampled Quality Distribution",
+                                fontSize: 20,
+                    },
+                    legend: {
+                        position: "right",
+                            labels: {
+                            fontColor: "gray"
+                        },
+                        display: true,
+                    },
+
+                    elements: {
+                        hitRadius: 3,
+                    }
+            }
+        })
+
     let ctx1 = document.getElementById("volatile_acidity").getContext("2d");
     let v_acidity  = JSON.parse({{ V_acidity | tojson }})
     let V_Acidity_Chart = new Chart(ctx1, {
@@ -113,9 +172,7 @@
                     'rgb(153, 102, 255)',
                     ],
                     borderWidth: 1,
-                    // hoverBorderWidth: 2,
-                    // hoverBackgroundColor: 'rgba(154, 245, 140)',
-                    // pointHoverRadius: 5
+                 
                 }],
             },
             options: {

@@ -59,8 +59,11 @@ def index():
 @app.route('/dashboard')
 def dashboard():
     db = pd.read_csv(r'C:\Users\LENOVO\Desktop\Hamza Bouajila\3IDSD SD\MLOPS\Projects\End-to-End-MLOPS\artifacts\data_ingestion\winequality-red.csv')
+    rdb = pd.read_csv(r'C:\Users\LENOVO\Desktop\Hamza Bouajila\3IDSD SD\MLOPS\Projects\End-to-End-MLOPS\artifacts\data_transformation\Resampled_data.csv')
+    
     Labels = dict(db.quality.value_counts()).keys()
     Values = [str(i) for i in dict(db.quality.value_counts()).values()]
+    R_Values = [str(i) for i in dict(rdb.quality.value_counts()).values()]
     volatil_acidity_mean = [str(round(i, 3)) for i in dict(db.groupby('quality').mean()['volatile acidity']).values()]
     
 
@@ -68,8 +71,8 @@ def dashboard():
                             labels=json.dumps(list(Labels)),
                             values = json.dumps(list(Values)),
                             V_acidity = json.dumps(volatil_acidity_mean),
-                            db_data = jsonify(db.to_dict(orient='records'))
-                        )
+                            R_values = json.dumps(list(R_Values))                         
+                            )
 
 if __name__ == "__main__":
 	app.run(host="0.0.0.0", port = 8080, debug=True)
