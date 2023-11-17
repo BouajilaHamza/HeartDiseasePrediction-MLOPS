@@ -1,0 +1,146 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div class="col-xs-10 col-sm-6 col-md-6">
+    <div class="card card-style mb-2">
+        <div class="card-body">
+            <div class="chart-container" style="position: relative;">
+                <canvas id="quality_distribution"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <div class="col-xs-10 col-sm-6 col-md-6">
+    <div class="card card-style mb-2">
+        <div class="card-body">
+            <div class="chart-container" style="position: relative;">
+                <canvas id="income_vs_category"></canvas>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<div class="col-xs-10 col-sm-6 col-md-6">
+    <div class="card card-style mb-2">
+        <div class="card-body">
+            <div class="chart-container" style="position: relative;">
+                <canvas id="volatile_acidity"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% block javascript %}
+<script>
+    var ctx = document.getElementById("quality_distribution").getContext("2d");
+    Chart.scaleService.updateScaleDefaults('linear', {
+        ticks: {
+            min: 0
+        }
+    });
+    
+    
+    let values  = JSON.parse({{ values | tojson }})
+    let labels  = JSON.parse({{ labels | tojson }})
+    let QD_Chart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+            labels: labels,
+                datasets: [{
+                    label: "Quality Distribution",
+                    data: values,
+                    backgroundColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(255, 159, 64)',
+                    'rgb(255, 205, 86)',
+                    'rgb(75, 192, 192)',
+                    'rgb(54, 162, 235)',
+                    'rgb(153, 102, 255)',                   
+                ],
+                    borderColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(255, 159, 64)',
+                    'rgb(255, 205, 86)',
+                    'rgb(75, 192, 192)',
+                    'rgb(54, 162, 235)',
+                    'rgb(153, 102, 255)',
+                    ],
+                }],
+            },
+            options: {
+                    title: {
+                        display: true,
+                            text: "Quality Distribution",
+                                fontSize: 20,
+                    },
+                    legend: {
+                        position: "right",
+                            labels: {
+                            fontColor: "gray"
+                        },
+                        display: true,
+                    },
+
+                    elements: {
+                        hitRadius: 3,
+                    }
+            }
+        })
+
+    let ctx1 = document.getElementById("volatile_acidity").getContext("2d");
+    let v_acidity  = JSON.parse({{ V_acidity | tojson }})
+    let V_Acidity_Chart = new Chart(ctx1, {
+            type: 'bar',
+            data: {
+            labels: ["3","4","5","6","7","8"],
+                datasets: [{
+                    label: "Volatile Acidity",
+                    data: v_acidity,
+                    backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(255, 205, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(153, 102, 255, 0.2)'                    
+                ],
+                    borderColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(255, 159, 64)',
+                    'rgb(255, 205, 86)',
+                    'rgb(75, 192, 192)',
+                    'rgb(54, 162, 235)',
+                    'rgb(153, 102, 255)',
+                    ],
+                    borderWidth: 1,
+                    // hoverBorderWidth: 2,
+                    // hoverBackgroundColor: 'rgba(154, 245, 140)',
+                    // pointHoverRadius: 5
+                }],
+            },
+            options: {
+                    title: {
+                        display: true,
+                            text: "Volatile Acidity Mean",
+                                fontSize: 20,
+                    },
+                    legend: {
+                        position: "right",
+                            labels: {
+                            fontColor: "gray"
+                        },
+                        display: false,
+                    },
+
+                    elements: {
+                        hitRadius: 3,
+                    }
+            }
+        })
+
+    
+ 
+</script>
+{% endblock%}
+
+{% endblock %}

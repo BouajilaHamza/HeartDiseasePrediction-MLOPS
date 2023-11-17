@@ -1,4 +1,5 @@
-from flask import Flask, render_template, request
+import json
+from flask import Flask, jsonify, render_template, request
 import os 
 import numpy as np
 import pandas as pd
@@ -40,9 +41,9 @@ def index():
             data = np.array(data).reshape(1, 11)
             
             obj = PredictionPipeline()
-            predict = obj.predict(data)
+            predict = obj.predict(data)            
 
-            return render_template('results.html', prediction = str(predict))
+            return render_template('results.html', prediction = str(round(float(predict[0]),3)))
 
         except Exception as e:
             print('The Exception message is: ',e)
@@ -52,6 +53,24 @@ def index():
         return render_template('index.html')
 
 
+
+
+
+
+@app.route('/dashboard')
+def dashboard():
+    db = pd.read_csv(r'C:\Users\LENOVO\Desktop\Hamza Bouajila\3IDSD SD\MLOPS\Projects\End-to-End-MLOPS\artifacts\data_ingestion\winequality-red.csv')
+    Labels = dict(db.quality.value_counts()).keys()
+    Values = [str(i) for i in dict(db.quality.value_counts()).values()]
+    volatil_acidity_mean = [str(round(i, 3)) for i in dict(db.groupby('quality').mean()['volatile acidity']).values()]
+    
+
+    return render_template('dashboard.html',
+                            labels=json.dumps(list(Labels)),
+                            values = json.dumps(list(Values)),
+                            V_acidity = json.dumps(volatil_acidity_mean),
+                            db_data = jsonify(db.to_dict(orient='records'))
+                        )
+
 if __name__ == "__main__":
-	# app.run(host="0.0.0.0", port = 8080, debug=True)
-	app.run(host="0.0.0.0", port = 8080)
+	app.run(host="0.0.0.0", port = 8080, debug=True)

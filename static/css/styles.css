@@ -60,7 +60,7 @@
   --bs-body-font-weight: 400;
   --bs-body-line-height: 1.5;
   --bs-body-color: #212529;
-  --bs-body-bg: #fff;
+  --bs-body-bg: #000000;
 }
 
 *,
@@ -11108,9 +11108,9 @@ footer {
 
 header.masthead {
   position: relative;
-  margin-bottom: 3rem;
+  margin-bottom: 1rem;
   padding-top: calc(8rem + 57px);
-  padding-bottom: 8rem;
+  padding-bottom: 3rem;
   background: no-repeat center center;
   background-color: #6c757d;
   background-size: cover;

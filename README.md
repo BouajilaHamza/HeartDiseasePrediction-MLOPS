@@ -26,11 +26,11 @@ https://github.com/BouajilaHamza/End-to-End-MLOPS
 ### STEP 01- Create a conda environment after opening the repository
 
 ```bash
-conda create -n mlproj python=3.8 -y
+conda create -n mlops python=3.11 -y
 ```
 
 ```bash
-conda activate mlproj
+conda activate mlops
 ```
 
 
@@ -115,7 +115,7 @@ set MLFLOW_TRACKING_PASSWORD=b8974c8a3d11e3c09f47ea162fd3e766ec534bee
 
 	
 ## 3. Create ECR repo to store/save docker image
-    - Save the URI: 566373416292.dkr.ecr.ap-south-1.amazonaws.com/mlproj
+    - Save the URI: 653290958590.dkr.ecr.us-east-1.amazonaws.com/mlops_project
 
 	
 ## 4. Create EC2 machine (Ubuntu) 
