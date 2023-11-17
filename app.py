@@ -23,7 +23,6 @@ def training():
 def index():
     if request.method == 'POST':
         try:
-            #  reading the inputs given by the user
             fixed_acidity =float(request.form['fixed_acidity'])
             volatile_acidity =float(request.form['volatile_acidity'])
             citric_acid =float(request.form['citric_acid'])
