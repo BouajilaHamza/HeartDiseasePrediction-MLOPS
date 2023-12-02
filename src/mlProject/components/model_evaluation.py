@@ -29,8 +29,9 @@ class ModelEvaluation:
     def log_into_mlflow(self):
 
         test_data = pd.read_csv(self.config.test_data_path)
-        model = joblib.load(self.config.model_path)
-
+        EN = joblib.load(self.config.ElasticNet_path)
+        DT = joblib.load(self.config.DecisionTree_path)
+        
         test_x = test_data.drop([self.config.target_column], axis=1)
         test_y = test_data[[self.config.target_column]]
 
@@ -41,26 +42,27 @@ class ModelEvaluation:
 
         with mlflow.start_run():
 
-            predicted_qualities = model.predict(test_x)
-
-            (rmse, mae, r2) = self.eval_metrics(test_y, predicted_qualities)
+            EN_predicted_qualities = EN.predict(test_x)
+            (EN_rmse, EN_mae, EN_r2) = self.eval_metrics(test_y, EN_predicted_qualities)
+            
+            DT_predicted_qualities = DT.predict(test_x)
+            (DT_rmse, DT_mae, DT_r2) = self.eval_metrics(test_y, DT_predicted_qualities)
             
             # Saving metrics as local
-            scores = {"rmse": rmse, "mae": mae, "r2": r2}
+            scores = {"EN_rmse": EN_rmse, "EN_mae": EN_mae, "EN_r2": EN_r2,"DT_rmse": DT_rmse, "DT_mae": DT_mae, "DT_r2": DT_r2}
             save_json(path=Path(self.config.metric_file_name), data=scores)
-
+            mlflow.log_metrics(scores)
             mlflow.log_params(self.config.all_params)
-
-            mlflow.log_metric("rmse", rmse)
-            mlflow.log_metric("r2", r2)
-            mlflow.log_metric("mae", mae)
+           
 
 
             # Model registry does not work with file store
             if tracking_url_type_store != "file":
 
-                mlflow.sklearn.log_model(model, "model", registered_model_name="ElasticnetModel")
+                mlflow.sklearn.log_model(EN, "ElasticNet", registered_model_name="ElasticnetModel")
+                mlflow.sklearn.log_model(DT, "DecisionTree", registered_model_name="DecisionTreeModel")
             else:
-                mlflow.sklearn.log_model(model, "model")
+                mlflow.sklearn.log_model(EN, "ElasticNet")
+                mlflow.sklearn.log_model(DT, "DecisionTree")
 
     

@@ -1,3 +1,14 @@
+DecisionTree:
+  criterion: friedman_mse
+  splitter: best
+  max_depth: 5
+  min_samples_split: 2
+  min_samples_leaf: 1
+  min_weight_fraction_leaf: 0.0
+  max_features: log2
+  
+
 ElasticNet:
   alpha: 0.9
   l1_ratio: 0.8
+  

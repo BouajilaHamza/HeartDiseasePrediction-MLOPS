@@ -69,7 +69,8 @@ class ConfigurationManager:
 
     def get_model_trainer_config(self) -> ModelTrainerConfig:
         config = self.config.model_trainer
-        params = self.params.ElasticNet
+        EN_params = self.params.ElasticNet
+        DT_params = self.params.DecisionTree
         schema =  self.schema.TARGET_COLUMN
 
         create_directories([config.root_dir])
@@ -78,9 +79,17 @@ class ConfigurationManager:
             root_dir=config.root_dir,
             train_data_path = config.train_data_path,
             test_data_path = config.test_data_path,
-            model_name = config.model_name,
-            alpha = params.alpha,
-            l1_ratio = params.l1_ratio,
+            ElasticNet = config.ElasticNet,
+            DecisionTree = config.DecisionTree,
+            alpha = EN_params.alpha,
+            l1_ratio = EN_params.l1_ratio,
+            criterion= DT_params.criterion,
+            max_depth=DT_params.max_depth,
+            splitter=DT_params.splitter,
+            min_samples_split=DT_params.min_samples_split,
+            min_samples_leaf=DT_params.min_samples_leaf,
+            min_weight_fraction_leaf=DT_params.min_weight_fraction_leaf,
+            max_features=DT_params.max_features,
             target_column = schema.name
             
         )
@@ -91,7 +100,8 @@ class ConfigurationManager:
 
     def get_model_evaluation_config(self) -> ModelEvaluationConfig:
         config = self.config.model_evaluation
-        params = self.params.ElasticNet
+        EN_params = self.params.ElasticNet
+        DT_params = self.params.DecisionTree
         schema =  self.schema.TARGET_COLUMN
 
         create_directories([config.root_dir])
@@ -99,8 +109,9 @@ class ConfigurationManager:
         model_evaluation_config = ModelEvaluationConfig(
             root_dir=config.root_dir,
             test_data_path=config.test_data_path,
-            model_path = config.model_path,
-            all_params=params,
+            ElasticNet_path = config.ElasticNet_path,
+            DecisionTree_path=config.DecisionTree_path,
+            all_params={**EN_params,**DT_params},
             metric_file_name = config.metric_file_name,
             target_column = schema.name,
             mlflow_uri="https://dagshub.com/hamza.bouajila/End-to-End-MLOPS.mlflow",
