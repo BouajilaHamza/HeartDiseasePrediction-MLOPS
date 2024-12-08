@@ -12,6 +12,7 @@ COLUMNS:
   slope: int64
   ca: int64
   thal: int64
+  target: int64
 
 
 TARGET_COLUMN:

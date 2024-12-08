@@ -60,13 +60,13 @@ def index():
 
 @app.route('/dashboard')
 def dashboard():
-    db = pd.read_csv(rf'{os.getcwd()}/artifacts/data_ingestion/winequality-red.csv')
+    db = pd.read_csv(rf'{os.getcwd()}/artifacts/data_ingestion/heart.csv')
     rdb = pd.read_csv(rf'{os.getcwd()}/artifacts/data_transformation/Resampled_data.csv')
     
-    Labels = dict(db.quality.value_counts()).keys()
-    Values = [str(i) for i in dict(db.quality.value_counts()).values()]
-    R_Values = [str(i) for i in dict(rdb.quality.value_counts()).values()]
-    volatil_acidity_mean = [str(round(i, 3)) for i in dict(db.groupby('quality').mean()['volatile acidity']).values()]
+    Labels = dict(db.target.value_counts()).keys()
+    Values = [str(i) for i in dict(db.target.value_counts()).values()]
+    R_Values = [str(i) for i in dict(rdb.target.value_counts()).values()]
+    volatil_acidity_mean = [str(round(i, 3)) for i in dict(db.groupby('target').mean()['age']).values()]
     
 
     return render_template('dashboard.html',
