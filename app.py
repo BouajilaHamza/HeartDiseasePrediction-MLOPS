@@ -25,24 +25,26 @@ def training():
 def index():
     if request.method == 'POST':
         try:
-            fixed_acidity =float(request.form['fixed_acidity'])
-            volatile_acidity =float(request.form['volatile_acidity'])
-            citric_acid =float(request.form['citric_acid'])
-            residual_sugar =float(request.form['residual_sugar'])
-            chlorides =float(request.form['chlorides'])
-            free_sulfur_dioxide =float(request.form['free_sulfur_dioxide'])
-            total_sulfur_dioxide =float(request.form['total_sulfur_dioxide'])
-            density =float(request.form['density'])
-            pH =float(request.form['pH'])
-            sulphates =float(request.form['sulphates'])
-            alcohol =float(request.form['alcohol'])
-       
-         
-            data = [fixed_acidity,volatile_acidity,citric_acid,residual_sugar,chlorides,free_sulfur_dioxide,total_sulfur_dioxide,density,pH,sulphates,alcohol]
-            data = np.array(data).reshape(1, 11)
-            
+            age = float(request.form['age'])
+            sex = float(request.form['sex'])
+            chest_pain_type = float(request.form['chest_pain_type'])
+            resting_bp = float(request.form['resting_bp'])
+            cholesterol = float(request.form['cholesterol'])
+            fasting_blood_sugar = float(request.form['fasting_blood_sugar'])
+            resting_ecg = float(request.form['resting_ecg'])
+            max_heart_rate = float(request.form['max_heart_rate'])
+            exercise_angina = float(request.form['exercise_angina'])
+            oldpeak = float(request.form['oldpeak'])
+            slope = float(request.form['slope'])
+            major_vessels = float(request.form['major_vessels'])
+            thal = float(request.form['thal'])
+
+            data = [age, sex, chest_pain_type, resting_bp, cholesterol, fasting_blood_sugar, resting_ecg, max_heart_rate, exercise_angina, oldpeak, slope, major_vessels, thal]
+            print(data)
+            data = np.array(data).reshape(1, 13)
+
             obj = PredictionPipeline()
-            predict = obj.predict(data)            
+            predict = obj.predict(data)
 
             return render_template('results.html', prediction = str(round(float(predict[0]),3)))
 
@@ -77,5 +79,5 @@ def dashboard():
                             )
 
 if __name__ == "__main__":
-    main()
+    # main()
     app.run(host="0.0.0.0", port = 8080, debug=True)
