@@ -1,8 +1,8 @@
 import os
-from mlProject import logger
+from src.mlProject import logger
 from sklearn.model_selection import train_test_split
 import pandas as pd
-from mlProject.entity.config_entity import DataTransformationConfig
+from src.mlProject.entity.config_entity import DataTransformationConfig
 from imblearn.over_sampling import SVMSMOTE
 
 
@@ -12,15 +12,15 @@ class DataTransformation:
 
     def resampling_data(self):
         data = pd.read_csv(self.config.data_path)
-        X = data.drop(columns=['quality'])
-        y = data['quality']
+        X = data.drop(columns=['target'])
+        y = data['target']
         sm = SVMSMOTE()
         X_res, y_res = sm.fit_resample(X, y)
         Resampled_data = pd.concat([X_res, y_res], axis=1)
         Resampled_data.to_csv(os.path.join(self.config.root_dir, "Resampled_data.csv"),index = False)
         logger.info("Resampling data to be balanced")
-        logger.info(data.quality.value_counts())
-        logger.info(Resampled_data.quality.value_counts())
+        logger.info(data.target.value_counts())
+        logger.info(Resampled_data.target.value_counts())
 
 
 

@@ -14,6 +14,100 @@
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="static/css/styles.css" rel="stylesheet" />
+        <style>
+            /* body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f4f9;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+            } */
+            .form-detail {
+                background: #000;
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                width: 100%;
+                /* max-width: 600px; */
+                margin: 20px;
+                position: relative;
+                
+            }
+            .form-detail h2 {
+                text-align: center;
+                margin-bottom: 20px;
+                color: #FFF;
+            }
+            .form-row-total {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+            }
+            .form-row {
+                flex: 1;
+                min-width: 45%;
+                margin-bottom: 50px;
+                padding-right: 50px;
+                padding-left: 50px;
+       
+                
+            }
+            .form-row label {
+                display: block;
+                margin-bottom: 5px;
+                color: #FFF;
+            }
+            .input-text {
+                width: 100%;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                box-sizing: border-box;
+            }
+            .input-text[type="radio"] {
+                display: inline-block;
+                width: auto;
+            }
+
+            .label-text { 
+                color: black; 
+                background-color: #FFF; /* Optional: add background for better visibility */ 
+                padding: 0 5px; 
+                border-radius: 3px; 
+            }
+            .input-text[type="checkbox"] {
+                display: inline-block;
+                width: auto;
+            }
+            .form-row select {
+                width: 100%;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                box-sizing: border-box;
+            }
+            .form-row-last {
+                text-align: center;
+            }
+            .register {
+                background-color: #FFF;
+                color: #000;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 16px;
+                width: 50%;
+            }
+            .register:hover {
+                background-color: #000;
+                color: #FFF;
+            }
+
+        </style>
     </head>
     <body>
         <!-- Navigation-->
@@ -38,106 +132,112 @@
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-md-10 col-lg-8 col-xl-7">
                         <div class="site-heading">
-                            <h1>Wine Quality Prediction</h1>
-                            <span class="subheading">A Wine Quality Checking Web App</span>
+                            <h1>Heart Disease Classification System
+                            <span class="subheading">Heart Disease Classification System</span>
                         </div>
                     </div>
                 </div>
             </div>
         </header>
-
-
         <!-- Main Content-->
         <div class="container px-4 px-lg-5">
 
-           <!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<title>Form-v9 by Colorlib</title>
-	<!-- Mobile Specific Metas -->
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<!-- Font-->
-	<link rel="stylesheet" type="text/css" href="static/css2/nunito-font.css">
-	<!-- Main Style Css -->
-    <link rel="stylesheet" href="static/css2/style.css"/>
-</head>
-<body class="form-v9">
-	<div class="page-content">
-		<div class="form-v9-content">
-			<form class="form-detail" action="/predict" method="post">
-				<h2>Please Fill The Information</h2>
-				<div class="form-row-total">
-
-					<div class="form-row">
-                        <label for="fixed_acidity"> Fixed Acidity:</label>
-						<input type="text" name="fixed_acidity" id="fixed_acidity" class="input-text" placeholder="fixed_acidity" required>
-					</div>
-
-					<div class="form-row">
-                        <label for="volatile_acidity"> Volatile Acidity:</label>
-						<input type="text" name="volatile_acidity" id="volatile_acidity" class="input-text" placeholder="volatile_acidity" required>
-					</div>
-
-				</div>
-				<div class="form-row-total">
-                    <div class="form-row">
-                        <label for="citric_acid"> Citric Acid:</label>
-						<input type="text" name="citric_acid" id="citric_acid" class="input-text" placeholder="citric_acid" required>
-					</div>
-                    <div class="form-row">
-                        <label for="residual_sugar"> Residual Sugar:</label>
-						<input type="text" name="residual_sugar" id="residual_sugar" class="input-text" placeholder="residual_sugar" required>
-					</div>
-
-				</div>
-               <div class="form-row-total">
-                    <div class="form-row">
-                        <label for="chlorides"> Chlorides:</label>
-						<input type="text" name="chlorides" id="chlorides" class="input-text" placeholder="chlorides" required>
-					</div>
-
-                    <div class="form-row">
-                        <label for="free_sulfur_dioxide"> Free Sulfur Dioxide:</label>
-						<input type="text" name="free_sulfur_dioxide" id="free_sulfur_dioxide" class="input-text" placeholder="free_sulfur_dioxide" required>
-					</div>
-
-				</div>
-                <div class="form-row-total">
-                    <div class="form-row">
-                        <label for="total_sulfur_dioxide"> Total Sulfur Dioxide:</label>
-						<input type="text" name="total_sulfur_dioxide" id="total_sulfur_dioxide" class="input-text" placeholder="total_sulfur_dioxide" required>
-					</div>
-                    <div class="form-row">
-                        <label for="density"> Density:</label>
-						<input type="text" name="density" id="density" class="input-text" placeholder="density" required>
-					</div>
-				</div>
-                <div class="form-row-total">
-                    <div class="form-row">
-                        <label for="pH"> pH:</label>
-						<input type="text" name="pH" id="pH" class="input-text" placeholder="pH" required>
-					</div>
-                    <div class="form-row">
-                        <label for="sulphates"> Sulphates:</label>
-						<input type="text" name="sulphates" id="sulphates" class="input-text" placeholder="sulphates" required>
-					</div>
-				</div>
+            <form class="form-detail" action="/predict" method="POST">
+                <h2>Please Fill The Information</h2>
                 <div class="form-row-total">
 
                     <div class="form-row">
-                        <label for="alcohol"> Alcohol:</label>
-						<input type="text" name="alcohol" id="alcohol" class="input-text" placeholder="alcohol" required>
-					</div>
+                        <label for="age">Age:</label>
+                        <input type="number" name="age" id="age" class="input-text" placeholder="24" required>
+                    </div>
 
+                    <div class="form-row">
+                        <label for="sex">Sex:</label>
+                        <input type="radio" name="sex" id="sex_male" value="1" required> 
+                        <span class="label-text">Male</span>
+                        <input type="radio" name="sex" id="sex_female" value="0" required>
+                        <span class="label-text">Female</span>
+                    </div>
 
-				</div>
+                </div>
+                <div class="form-row-total">
+                    <div class="form-row">
+                        <label for="chest_pain_type">Chest Pain Type:</label>
+                        <select name="chest_pain_type" id="chest_pain_type" class="input-text" required>
+                            <option value="1">Type 1</option>
+                            <option value="2">Type 2</option>
+                            <option value="3">Type 3</option>
+                            <option value="4">Type 4</option>
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <label for="resting_bp">Resting Blood Pressure:</label>
+                        <input type="number" name="resting_bp" id="resting_bp" class="input-text" placeholder="Resting BP (mm Hg)" required>
+                    </div>
+                </div>
+                <div class="form-row-total">
+                    <div class="form-row">
+                        <label for="cholesterol">Cholesterol:</label>
+                        <input type="number" name="cholesterol" id="cholesterol" class="input-text" placeholder="Cholesterol (mg/dl)" required>
+                    </div>
+                    <div class="form-row">
+                        <label for="fasting_blood_sugar">Fasting Blood Sugar > 120 mg/dl:</label>
+                        <input type="checkbox" name="fasting_blood_sugar" id="fasting_blood_sugar" value="1" class="input-text">
+                    </div>
+                </div>
+                <div class="form-row-total">
+                    <div class="form-row">
+                        <label for="resting_ecg">Resting Electrocardiographic Results:</label>
+                        <select name="resting_ecg" id="resting_ecg" class="input-text" required>
+                            <option value="0">Normal</option>
+                            <option value="1">Having ST-T wave abnormality</option>
+                            <option value="2">Showing probable or definite left ventricular hypertrophy</option>
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <label for="max_heart_rate">Maximum Heart Rate Achieved:</label>
+                        <input type="number" name="max_heart_rate" id="max_heart_rate" class="input-text" placeholder="Max Heart Rate" required>
+                    </div>
+                </div>
+                <div class="form-row-total">
+                    <div class="form-row">
+                        <label for="exercise_angina">Exercise Induced Angina:</label>
+                        <input type="checkbox" name="exercise_angina" id="exercise_angina" value="1" class="input-text">
+                    </div>
+                    <div class="form-row">
+                        <label for="oldpeak">Oldpeak:</label>
+                        <input type="number" name="oldpeak" id="oldpeak" class="input-text" step="0.1" placeholder="Oldpeak (ST depression)" required>
+                    </div>
+                </div>
+                <div class="form-row-total">
+                    <div class="form-row">
+                        <label for="slope">Slope:</label>
+                        <select name="slope" id="slope" class="input-text" required>
+                            <option value="1">Upsloping</option>
+                            <option value="2">Flat</option>
+                            <option value="3">Downsloping</option>
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <label for="major_vessels">Number of Major Vessels:</label>
+                        <input type="number" name="major_vessels" id="major_vessels" class="input-text" min="0" max="3" required>
+                    </div>
+                </div>
+                <div class="form-row-total">
+                    <div class="form-row">
+                        <label for="thal">Thal:</label>
+                        <select name="thal" id="thal" class="input-text" required>
+                            <option value="0">Normal</option>
+                            <option value="1">Fixed Defect</option>
+                            <option value="2">Reversible Defect</option>
+                        </select>
+                    </div>
+                </div>
 
-
-				<div class="form-row-last">
-					<input type="submit" name="register" class="register" value="Predict">
-				</div>
-			</form>
+                <div class="form-row-last">
+                    <input type="submit" name="register" class="register" value="Predict">
+                </div>
+            </form>
 		</div>
 	</div>
 </body><!-- This templates was made by Colorlib (https://colorlib.com) -->
