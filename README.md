@@ -21,7 +21,7 @@
 Clone the repository
 
 ```bash
-https://github.com/BouajilaHamza/End-to-End-MLOPS
+https://github.com/BouajilaHamza/HeartDiseasePrediction-MLOPS/
 ```
 ### STEP 01- Create a conda environment after opening the repository
 
