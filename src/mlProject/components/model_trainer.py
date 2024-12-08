@@ -1,10 +1,9 @@
 import pandas as pd
 import os
-from mlProject import logger
 from sklearn.linear_model import ElasticNet
 from sklearn.tree import DecisionTreeRegressor
 import joblib
-from mlProject.entity.config_entity import ModelTrainerConfig
+from src.mlProject.entity.config_entity import ModelTrainerConfig
 
 
 

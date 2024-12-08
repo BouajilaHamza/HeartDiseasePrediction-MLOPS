@@ -1,16 +1,18 @@
 import joblib 
-import numpy as np
-import pandas as pd
 from pathlib import Path
 
 
 
 class PredictionPipeline:
     def __init__(self):
-        self.model = joblib.load(Path('artifacts/model_trainer/model.joblib'))
+        self.elasticnet = joblib.load(Path('artifacts/model_trainer/ElasticNet.joblib'))
+        self.decisiontree = joblib.load(Path('artifacts/model_trainer/DecisionTree.joblib'))
 
     
     def predict(self, data):
-        prediction = self.model.predict(data)
+        elasticnet_prediction = self.elasticnet.predict(data)
+        decisiontree_prediction = self.decisiontree.predict(data)
+
+        prediction = (elasticnet_prediction + decisiontree_prediction) / 2
 
         return prediction

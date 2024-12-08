@@ -1,6 +1,6 @@
-from mlProject.config.configuration import ConfigurationManager
-from mlProject.components.model_trainer import ModelTrainer
-from mlProject import logger
+from src.mlProject.config.configuration import ConfigurationManager
+from src.mlProject.components.model_trainer import ModelTrainer
+from src.mlProject import logger
 
 
 

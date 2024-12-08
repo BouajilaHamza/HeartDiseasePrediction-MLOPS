@@ -1,8 +1,8 @@
 import os
-from mlProject import logger
+from src.mlProject import logger
 from sklearn.model_selection import train_test_split
 import pandas as pd
-from mlProject.entity.config_entity import DataTransformationConfig
+from src.mlProject.entity.config_entity import DataTransformationConfig
 from imblearn.over_sampling import SVMSMOTE
 
 
