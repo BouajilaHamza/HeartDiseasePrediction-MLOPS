@@ -1,18 +1,19 @@
 COLUMNS:
-  fixed acidity: float64
-  volatile acidity: float64
-  citric acid: float64
-  residual sugar: float64
-  chlorides: float64
-  free sulfur dioxide: float64
-  total sulfur dioxide: float64
-  density: float64
-  pH: float64
-  sulphates: float64
-  alcohol: float64
-  quality: int64
+  age: int64
+  sex: int64
+  cp: int64
+  trestbps: int64
+  chol: int64
+  fbs: int64
+  restecg: int64
+  thalach: int64
+  exang: int64
+  oldpeak: int64
+  slope: int64
+  ca: int64
+  thal: int64
 
 
 TARGET_COLUMN:
-  name: quality
+  name: target
   
