@@ -25,27 +25,36 @@ def training():
 def index():
     if request.method == 'POST':
         try:
+            print(request.form)
             age = float(request.form['age'])
             sex = float(request.form['sex'])
             chest_pain_type = float(request.form['chest_pain_type'])
             resting_bp = float(request.form['resting_bp'])
             cholesterol = float(request.form['cholesterol'])
-            fasting_blood_sugar = float(request.form['fasting_blood_sugar'])
+
+          
+          
+            if "fasting_blood_sugar" not in request.form.keys():
+                fasting_blood_sugar = 0
+            else:
+                fasting_blood_sugar = float(request.form['fasting_blood_sugar'])
+
             resting_ecg = float(request.form['resting_ecg'])
             max_heart_rate = float(request.form['max_heart_rate'])
-            exercise_angina = float(request.form['exercise_angina'])
+            if "exercise_angina" not in request.form.keys():
+                exercise_angina = 0
+            else:
+                exercise_angina = float(request.form['exercise_angina'])
             oldpeak = float(request.form['oldpeak'])
             slope = float(request.form['slope'])
             major_vessels = float(request.form['major_vessels'])
             thal = float(request.form['thal'])
 
             data = [age, sex, chest_pain_type, resting_bp, cholesterol, fasting_blood_sugar, resting_ecg, max_heart_rate, exercise_angina, oldpeak, slope, major_vessels, thal]
-            print(data)
             data = np.array(data).reshape(1, 13)
 
             obj = PredictionPipeline()
             predict = obj.predict(data)
-
             return render_template('results.html', prediction = str(round(float(predict[0]),3)))
 
         except Exception as e:
@@ -79,5 +88,5 @@ def dashboard():
                             )
 
 if __name__ == "__main__":
-    # main()
+    main()
     app.run(host="0.0.0.0", port = 8080, debug=True)

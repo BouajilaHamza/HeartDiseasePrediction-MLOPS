@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Wine Quality Predictor</title>
+        <title>Heart Disease Classification</title>
         <link rel="icon" type="image/x-icon" href="static/assets/favicon.ico" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
@@ -142,13 +142,13 @@
         <!-- Main Content-->
         <div class="container px-4 px-lg-5">
 
-            <form class="form-detail" action="/predict" method="POST">
+            <form class="form-detail" action="/predict" method="post">
                 <h2>Please Fill The Information</h2>
                 <div class="form-row-total">
 
                     <div class="form-row">
                         <label for="age">Age:</label>
-                        <input type="number" name="age" id="age" class="input-text" placeholder="24" required>
+                        <input type="number" name="age" id="age" class="input-text" placeholder="24" value="24" required>
                     </div>
 
                     <div class="form-row">
@@ -172,14 +172,15 @@
                     </div>
                     <div class="form-row">
                         <label for="resting_bp">Resting Blood Pressure:</label>
-                        <input type="number" name="resting_bp" id="resting_bp" class="input-text" placeholder="Resting BP (mm Hg)" required>
+                        <input type="number" name="resting_bp" id="resting_bp" class="input-text" placeholder="Resting BP (mm Hg)" value="120" required>
                     </div>
                 </div>
                 <div class="form-row-total">
                     <div class="form-row">
                         <label for="cholesterol">Cholesterol:</label>
-                        <input type="number" name="cholesterol" id="cholesterol" class="input-text" placeholder="Cholesterol (mg/dl)" required>
+                        <input type="number" name="cholesterol" id="cholesterol" class="input-text" placeholder="Cholesterol (mg/dl)" value="10" required>
                     </div>
+
                     <div class="form-row">
                         <label for="fasting_blood_sugar">Fasting Blood Sugar > 120 mg/dl:</label>
                         <input type="checkbox" name="fasting_blood_sugar" id="fasting_blood_sugar" value="1" class="input-text">
@@ -196,7 +197,7 @@
                     </div>
                     <div class="form-row">
                         <label for="max_heart_rate">Maximum Heart Rate Achieved:</label>
-                        <input type="number" name="max_heart_rate" id="max_heart_rate" class="input-text" placeholder="Max Heart Rate" required>
+                        <input type="number" name="max_heart_rate" id="max_heart_rate" class="input-text" placeholder="Max Heart Rate" value="120" required>
                     </div>
                 </div>
                 <div class="form-row-total">
@@ -206,7 +207,7 @@
                     </div>
                     <div class="form-row">
                         <label for="oldpeak">Oldpeak:</label>
-                        <input type="number" name="oldpeak" id="oldpeak" class="input-text" step="0.1" placeholder="Oldpeak (ST depression)" required>
+                        <input type="number" name="oldpeak" id="oldpeak" class="input-text" step="0.1" value="1.5" placeholder="Oldpeak (ST depression)" required>
                     </div>
                 </div>
                 <div class="form-row-total">
@@ -220,7 +221,7 @@
                     </div>
                     <div class="form-row">
                         <label for="major_vessels">Number of Major Vessels:</label>
-                        <input type="number" name="major_vessels" id="major_vessels" class="input-text" min="0" max="3" required>
+                        <input type="number" name="major_vessels" id="major_vessels" class="input-text" min="0" max="3" value="0" required>
                     </div>
                 </div>
                 <div class="form-row-total">
